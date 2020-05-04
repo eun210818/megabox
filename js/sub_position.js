@@ -10,7 +10,4 @@ function subPosition(){
   $('#event_sub').css('padding-left',event-100);
   $('#bonus_sub').css('padding-left',bonus-100);
 
-  $(window).resize(function(){
-    subPosition();
-  });
 }

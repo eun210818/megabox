@@ -39,9 +39,20 @@
       login();
       sitemap();
       subPosition();
-      
+      $(window).resize(function(){
+        subPosition();
+      });
+
       // swiper
-      var swiper = new Swiper('.swiper-container');
+      var swiper = new Swiper('.swiper-container',{
+        slidesPerView:3.9,
+        spaceBetween:40,
+        loop:true,
+        autoplay:{
+          delay:3000,
+          speed:300,
+        }
+      });
 
       $('.git_hub').click(function(){
         location.href='https://github.com/eun210818/megabox';
@@ -148,17 +159,50 @@
     .bottom_nav>li:hover>.sub_nav{display:flex;}
     .border_none{border:none !important;}
 
-    /* #movie_sub{padding-left:50px;} */
-    /* #ticket_sub{padding-left:130px;} */
-    /* #theater_sub{padding-left:300px;} */
-    /* #event_sub{padding-left:570px;} */
-    /* #bonus_sub{padding-left:850px;} */
-
     #sitemap_btn{cursor:pointer;}
 
-    .section{height:1000px;background:rgba(255,0,0,0.2);}
     .footer{height:300px;background:rgba(0,255,0,0.2);}
     .container{height:100%;}
+  </style>
+  <style>
+    .section{padding:70px 0 120px;background:linear-gradient(145deg,#0c0908 10%,#161d2b 60%,#2b1f22 90%);background-size:cover;}
+    .movie_chart h2{text-align:center;margin-bottom:40px;}
+    .movie_chart h2 a{border-bottom:2px solid #444;padding-bottom:5px;font-weight:normal;font-size:15px;color:white;}
+    .poster{overflow:hidden;position:relative;border-radius:5px;margin-bottom:8px;}
+    .poster>img{width:100%;}
+    .poster>.poster_number{position:absolute;left:20px;top:10px;font-size:30px;color:white;text-shadow:1px 1px 1px black;font-style:italic;}
+    .poster>.poster_txt{position:absolute;left:0;top:0;right:0;bottom:0;padding:25px;background:rgba(0,0,0,0.7);color:white;opacity:0;transition:0.2s;}
+    .poster:hover>.poster_txt{opacity:1;}
+    .poster>.poster_txt>p{line-height:25px;font-size:15px;}
+    .poster>.poster_txt>p:first-child{height:80%;border-bottom:1px solid rgba(255,255,255,0.3);}
+    .poster>.poster_txt>p:last-child{height:20%;padding:0 50px;display:flex;justify-content:space-around;align-items:center;}
+    .poster>.poster_txt>p:last-child>span{font-size:26px;color:#5cc4e4;}
+    .poster_btn{color:white;}
+    .poster_btn>div:first-child{font-size:13px;float:left;display:flex;justify-content:space-between;box-sizing:border-box;width:33%;border:1px solid #555;padding:10px 15px;background:#0c0a0a;border-radius:5px;cursor:pointer;}
+    .poster_btn>div:first-child>span{text-indent:-9999px;width:18px;height:15px;background-image:url('images/ico-set.png');}
+    .poster_btn>div:last-child{float:right;box-sizing:border-box;width:65%;padding:11px;text-align:center;border-radius:5px;background:#037b94;cursor:pointer;}
+
+    .swiper-container{margin-bottom:50px;}
+    .quick_movie_menu{display:flex;align-items:center;height:80px;background:rgba(0,0,0,0.3);}
+    .quick_movie_menu>li{flex:1;display:flex;justify-content:center;border-right:1px solid #444;}
+    .quick_movie_menu>li:last-child{border-right:none;}
+    .quick_movie_menu>li>a{padding:5px 0 5px 30px;font-size:16px;color:white;}
+    .quick_movie_menu>li>a:hover{text-decoration:underline;}
+    .quick_movie_menu>li:nth-child(2)>a{background:url('images/ico-schedule-main.png') no-repeat;}
+    .quick_movie_menu>li:nth-child(3)>a{background:url('images/ico-boxoffice-main.png') no-repeat;padding-left:33px;}
+    .quick_movie_menu>li:nth-child(4)>a{background:url('images/ico-quick-reserve-main.png') no-repeat;padding-left:35px;}
+    .quick_movie_menu>li>input{background-color:transparent;background:url('images/ico-search-white.png') no-repeat right;border:none;border-bottom:1px solid #444;padding:5px 20px 5px 10px;color:white;}
+
+    .mouse_ani{height:50px;position:relative;}
+    .mouse_ani>img{position:absolute;top:30px;left:50%;transform:translateX(-50%);animation:mmove 2s infinite ease-in-out;animation-delay:2s;}
+    
+    @keyframes mmove{
+      0%{top:30px;}
+      40%{top:50px;}
+      60%{top:50px;}
+      100%{top:30px;}
+    }
+
   </style>
 </head>
 <body>
@@ -200,7 +244,6 @@
       </ul>
     </div>
   </div>
-
   <!-- wrap -->
   <div class="wrap">
     <!-- banner -->
@@ -251,7 +294,7 @@
             </ul>
             <ul class="bottom_nav">
               <li>
-                <img src="images/hamburger.png" alt="토글메뉴" title="샤이트맵" id="sitemap_btn">
+                <img src="images/hamburger.png" alt="토글메뉴" title="사이트맵" id="sitemap_btn">
                 <div class="sitemap">
                   <div class="container">
                     <div class="content">
@@ -419,7 +462,222 @@
       </div>
     </header>
     <section class="section">
-      <div class="container"></div>
+      <div class="container">
+        <article class="article movie_chart">
+          <div class="content">
+            <h2><a href="#">박스오피스</a></h2>
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide slide01">
+                  <ul>
+                    <li class="poster">
+                      <img src="images/poster01.jpg" alt="poster01">
+                      <p class="poster_number">1</p>
+                      <div class="poster_txt">
+                        <p>인피니티 워 이후 절반만 살아남은 지구 마지마 희망이 된 어벤져스 먼저 떠난 그들을 위해 모든 것을 걸었다! 위대한 어벤져스 운명을 바꿀 최후의 전쟁이 펼쳐진다!</p>
+                        <p>관람평<span> 9.3</span></p>
+                      </div>
+                    </li>
+                    <li class="poster_btn clearfix">
+                      <div><span>하트</span> 22.1k</div>
+                      <div>예매</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="swiper-slide slide02">
+                  <ul>
+                    <li class="poster">
+                      <img src="images/poster02.jpg" alt="poster02">
+                      <p class="poster_number">2</p>
+                      <div class="poster_txt">
+                        <p>새로운 조합을 이룬 어벤져스, 역대 최강 빌런 타노스에 맞서 세계의 운명이 걸린 인피니티 스톤을 향한 무한 대결이 펼쳐진다! 4월, 마블의 클라이맥스를 목격하라!</p>
+                        <p>관람평<span> 9.4</span></p>
+                      </div>
+                    </li>
+                    <li class="poster_btn clearfix">
+                      <div><span>하트</span> 4k</div>
+                      <div>예매</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="swiper-slide slide03">
+                  <ul>
+                    <li class="poster">
+                      <img src="images/poster03.jpg" alt="poster03">
+                      <p class="poster_number">3</p>
+                      <div class="poster_txt">
+                        <p>팝, 록, 클래식, 컨트리, 펑크, 테크노, K-POP까지 세상의 모든 음악이 쏟아진다! 노래와 춤을 즐기며 평화로운 나날을 보내던 팝 트롤 '파피'와 '브랜치' 그리고 친구들. 어느 날 '파피'는 자신들 외에도 서로 다른 외모와</p>
+                        <p>관람평<span> 9.1</span></p>
+                      </div>
+                    </li>
+                    <li class="poster_btn clearfix">
+                      <div><span>하트</span> 606</div>
+                      <div>예매</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="swiper-slide slide04">
+                  <ul>
+                    <li class="poster">
+                      <img src="images/poster04.jpg" alt="poster04">
+                      <p class="poster_number">4</p>
+                      <div class="poster_txt">
+                        <p>"폐 끼치고 싶진 않았어요" 전원 백수로 살 길 막막하지만 사이는 좋은 기택(송강호) 가족. 장남 기우(최우식)에게 명문대생 친구가 연결시켜 준 고액 과외 자리는 모처럼 싹튼 고정수입의 희망이다. 온 가족의 도움과 기대</p>
+                        <p>관람평<span> 9.4</span></p>
+                      </div>
+                    </li>
+                    <li class="poster_btn clearfix">
+                      <div><span>하트</span> 282</div>
+                      <div>예매</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="swiper-slide slide05">
+                  <ul>
+                    <li class="poster">
+                      <img src="images/poster05.jpg" alt="poster05">
+                      <p class="poster_number">5</p>
+                      <div class="poster_txt">
+                        <p>김수환 추기경의 어린 시절 이야기 "내 마음밭 특별한 씨앗을 키운 건, 가족의 사랑이었다" 1928년 일제강점기, 세상에서 가장 사랑하는 엄마와 아픈 아버지를 위해 신부보다 인삼장수가 되고 싶은 7살 소년 수환은 자신</p>
+                        <p>관람평<span> 8.4</span></p>
+                      </div>
+                    </li>
+                    <li class="poster_btn clearfix">
+                      <div><span>하트</span> 70</div>
+                      <div>예매</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="swiper-slide slide06">
+                  <ul>
+                    <li class="poster">
+                      <img src="images/poster06.jpg" alt="poster06">
+                      <p class="poster_number">6</p>
+                      <div class="poster_txt">
+                        <p>어렸을 때부터 함께 경극을 해온 '두지'(장국영)와 '시투'(장풍의). 세상에 둘도 없는 절친한 아우와 형이지만, '두지'는 남몰래 '시투'에 대한 마음을 품고 있다. 하지만 '시투'는 여인 '주샨'(공리)에 마음을 빼앗기고, 그로 인</p>
+                        <p>관람평<span> 9.6</span></p>
+                      </div>
+                    </li>
+                    <li class="poster_btn clearfix">
+                      <div><span>하트</span> 781</div>
+                      <div>예매</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="swiper-slide slide07">
+                  <ul>
+                    <li class="poster">
+                      <img src="images/poster07.jpg" alt="poster07">
+                      <p class="poster_number">7</p>
+                      <div class="poster_txt">
+                        <p>흥행 로코 제작진의 2020 본격 첫사랑 로코 우리의 시간은 지금부터가 진짜야! 모범생 '팡위커'와 유독 그에게만 빛나 보이는 '린린'이 어린 시절 동네 친구에서 연인이 되기까지의 새콤달콤한 여정을 담은 로맨스 일대기</p>
+                        <p>관람평<span> 7.3</span></p>
+                      </div>
+                    </li>
+                    <li class="poster_btn clearfix">
+                      <div><span>하트</span> 263</div>
+                      <div>예매</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="swiper-slide slide08">
+                  <ul>
+                    <li class="poster">
+                      <img src="images/poster08.jpg" alt="poster08">
+                      <p class="poster_number">8</p>
+                      <div class="poster_txt">
+                        <p>황홀한 사랑, 순수한 희망, 격렬한 열정··· 이 곳에서 모든 감정이 폭발한다! 꿈을 꾸는 사람들을 위한 별들의 도시 '라라랜드', 재즈 피아니스트 '세바스찬'(라이언 고슬링)과 배우 지망생 '미아'(엠마 스톤), 인생에서 가장</p>
+                        <p>관람평<span> 8.9</span></p>
+                      </div>
+                    </li>
+                    <li class="poster_btn clearfix">
+                      <div><span>하트</span> 1.3k</div>
+                      <div>예매</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="swiper-slide slide09">
+                  <ul>
+                    <li class="poster">
+                      <img src="images/poster09.jpg" alt="poster09">
+                      <p class="poster_number">9</p>
+                      <div class="poster_txt">
+                        <p>두 명의 병사, 하나의 미션! 그들이 싸워야 할 것은 적이 아니라 시간이었다! 제1차 세게대전이 한창인 1917년. 독일군에 의해 모든 통신망이 파괴된 상황 속에서 영국군 병사 '스코필드'(조지맥케이)와 '블레이크'(딘-찰스</p>
+                        <p>관람평<span> 9.2</span></p>
+                      </div>
+                    </li>
+                    <li class="poster_btn clearfix">
+                      <div><span>하트</span> 601</div>
+                      <div>예매</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="swiper-slide slide10">
+                  <ul>
+                    <li class="poster">
+                      <img src="images/poster10.jpg" alt="poster10">
+                      <p class="poster_number">10</p>
+                      <div class="poster_txt">
+                        <p>동생을 맡기기 위해 호텔 레이크를 찾아간 '유미' 두 자매를 가족처럼 반기는 호텔 레이크 사장 '경선' 이상한 이야기만 늘어 놓는 유일한 메이드 '예린' 호텔 레이크에서는 절대 위를 올려다보지 말 것 절대 혼자 돌아다니지</p>
+                        <p>관람평<span> 9.2</span></p>
+                      </div>
+                    </li>
+                    <li class="poster_btn clearfix">
+                      <div><span>하트</span> 107</div>
+                      <div>예매</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="swiper-slide slide11">
+                  <ul>
+                    <li class="poster">
+                      <img src="images/poster11.jpg" alt="poster11">
+                      <p class="poster_number">11</p>
+                      <div class="poster_txt">
+                        <p>모든 것을 마주하게 된 그날의 결혼식, 그리고 운명적 만남! 인도에서 아동 재단을 운영 중인 '이자벨'(미셸 윌리엄스)은 세계적 미디어 그룹 대표 '테레사'(줄리안 무어)로부터 거액의 후원을 제안받는다. 단, '이자벨'이</p>
+                        <p>관람평<span> 8.2</span></p>
+                      </div>
+                    </li>
+                    <li class="poster_btn clearfix">
+                      <div><span>하트</span> 173</div>
+                      <div>예매</div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="swiper-slide slide12">
+                  <ul>
+                    <li class="poster">
+                      <img src="images/poster12.jpg" alt="poster12">
+                      <p class="poster_number">12</p>
+                      <div class="poster_txt">
+                        <p>세월호는 왜 침몰했는가? 다큐팀은 <그날,바다>에 담지 못했던 조작 의혹을 새로 출범한 특별조사위원회에 전달하기 위해 자료를 정리하다가, 상상도 못한 데이터 조작의 증거들을 발견한다.</p>
+                        <p>관람평<span> 9.2</span></p>
+                      </div>
+                    </li>
+                    <li class="poster_btn clearfix">
+                      <div><span>하트</span> 184</div>
+                      <div>예매</div>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>            
+            <ul class="quick_movie_menu">
+              <li><input type="text" placeholder="영화명을 입력해주세요"></li>
+              <li><a href="#">상영시간표</a></li>
+              <li><a href="#">박스오피스</a></li>
+              <li><a href="#">빠른예매</a></li>
+            </ul>
+            <div class="mouse_ani">
+              <img src="images/ico-mouse.png" alt="mouse">
+            </div>
+          </div>
+        </article>
+        <article class="article bonus">
+          
+        </article>
+      </div>
     </section>
     <footer class="footer">
       <div class="container"></div>
