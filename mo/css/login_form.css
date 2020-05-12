@@ -1,0 +1,23 @@
+@charset 'utf-8';
+
+.login_form{display:none;position:absolute;left:0;top:0;width:100%;z-index:10000;background-color:white;}
+.login_form,.login_form a{color:#666;}
+.login_tit::before{content:'';display:block;}
+.login_tit{display:flex;justify-content:space-between;padding:10px 0;position:fixed;left:0;top:0;width:100%;background-color:white;}
+.login_tit p{font-size:20px;}
+.login_tit img{width:26px;cursor:pointer;}
+.login_content{padding-top:100px;}
+.id_pass{width:100%;margin-bottom:20px;border-top:none;border-right:none;border-left:none;border-bottom-color:rgba(0,0,0,0.2);padding:10px 0}
+.id_pass::placeholder{color:rgba(0,0,0,0.4);font-size:12px;font-weight:bold;}
+.id_save{display:flex;margin-bottom:40px;}
+.id_save>label{display:flex;flex-flow:row nowrap;align-items:center;}
+.id_save>label>span{font-size:16px;}
+.id_save>label::before{content:'';width:20px;height:20px;background-image:url('../images/bg-m-check-type3.png');background-size:cover;background-position:left;margin-right:5px;}
+#save_id:checked~label::before{background-position:right;}
+#save_id{display:none;}
+
+input[value="로그인"]{width:100%;padding:16px;background-color:#6437bf;color:white;font-size:16px;cursor:pointer;margin-bottom:20px;}
+.login_search,.login_sns{width:40%;margin:0 auto;display:flex;justify-content:space-between;}
+.login_sns{margin:30px auto;}
+.login_sns>li{width:40px;}
+.login_sns img{width:100%;}

@@ -1,0 +1,37 @@
+@charset 'utf-8';
+
+.burger_menu{overflow:scroll;-ms-overflow-style:none;position:fixed;left:0;top:0;z-index:10000;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;display:none;justify-content:flex-end;}
+.burger_menu::-webkit-scrollbar{display:none;}
+.burger_menu nav{width:320px;height:100%;background-color:white;}
+.nav_top{position:fixed;right:0;top:0;width:320px;}
+.nav_header,.nav_join{padding:15px 20px 37px;background:#160f2b;display:flex;align-items:center;}
+.nav_header>p{flex:10;font-size:16px;color:white;}
+.nav_header>p>span{display:inline-block;text-decoration:underline;cursor:pointer;font-size:16px;}
+.nav_header>a{flex:1;width:16px;}
+.nav_header img{width:100%;}
+
+.nav_join{border-top:1px solid rgba(255,255,255,0.1);padding:16px 0;}
+.nav_join>a{display:flex;justify-content:center;align-items:center;color:rgba(255,255,255,0.5);}
+.nav_join>a>img{width:16px;margin-right:5px;}
+.nav_join>a:nth-child(1){flex:2;}
+.nav_join>a:nth-child(2){flex:3;}
+
+.nav_bottom{position:fixed;right:0;bottom:0;width:320px;}
+.nav_bottom>img{width:100%;}
+
+.nav_content{padding:130px 0;}
+.nav_quick_icon{display:flex;flex-flow:row wrap;padding:20px 0 33px;}
+.nav_quick_icon>li{width:33.33333333%;padding:15px 0;text-align:center;}
+.nav_quick_icon>li img{width:60px;margin-bottom:6px;border:1px solid rgba(0,0,0,0.2);border-radius:50%;width:60px;padding:10px;}
+.nav_list{background:white;}
+.nav_list>li{border-top:1px solid rgba(0,0,0,0.2);padding:18px;}
+.nav_list a{display:inline-block;color:rgba(0,0,0,0.8);width:100%;height:100%;}
+
+#member_btn{display:flex;justify-content:space-between;align-items:center;}
+#member_btn::after{content:'';display:block;width:20px;height:20px;background-image:url('../images/ico-updown-off.png');background-size:cover;}
+.member_main{position:relative;}
+.member_sub{width:100%;position:absolute;left:0;top:100%;display:none;padding:20px;background-color:#f0f0f0;}
+.member_sub>li{padding:5px 0;}
+.nav_list>li:last-child>a{color:#14b9cb;display:flex;align-items:center;}
+.nav_list>li:last-child>a::before{content:'';display:inline-block;width:20px;height:20px;background-image:url('../images/ico-rnb-notice.png');background-size:cover;}
+.active_padding{padding-top:132px !important;}
