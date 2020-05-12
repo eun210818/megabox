@@ -58,6 +58,7 @@
 /* header */
 .header{height:90px;background:linear-gradient(145deg,#0c0908 10%,#161d2b 60%,#2b1f22 90%);position:relative;}
 .header>.container>.content{height:90px;display:flex;flex-flow:row nowrap;justify-content:space-between;align-items:center;}
+.logo{cursor:pointer;}
 .top_nav,.bottom_nav{display:flex;flex-flow:row nowrap;}
 .top_nav{margin-bottom:20px;}
 .nav02{padding-top:12px;}
