@@ -26,8 +26,8 @@
 .login_form .sns_login li{text-align:center;}
 
 /* git_hub */
-.git_hub{width:150px;padding:5px 0;background:#444;transform:rotate(-45deg);position:fixed;left:-30px;top:35px;z-index:3;cursor:pointer;}
-.git_hub p{font-size:12px;color:white;text-align:center;background-color:gray;}
+/* .git_hub{width:150px;padding:5px 0;background:#444;transform:rotate(-45deg);position:fixed;left:-30px;top:35px;z-index:3;cursor:pointer;} */
+/* .git_hub p{font-size:12px;color:white;text-align:center;background-color:gray;} */
 
 
 /* wrap */
